@@ -3,9 +3,33 @@
 
 var db = require("./models");
 
-var albumsList =[
-  // put data here!
-];
+var albumsList =[];
+
+  albumsList.push({
+               artistName: 'Ladyhawke',
+               name: 'Ladyhawke',
+               releaseDate: '2008, November 18',
+               genres: [ 'new wave', 'indie rock', 'synth pop' ]
+             });
+  albumsList.push({
+               artistName: 'The Knife',
+               name: 'Silent Shout',
+               releaseDate: '2006, February 17',
+               genres: [ 'synth pop', 'electronica', 'experimental' ]
+             });
+  albumsList.push({
+               artistName: 'Juno Reactor',
+               name: 'Shango',
+               releaseDate: '2000, October 9',
+               genres: [ 'electronic', 'goa trance', 'tribal house' ]
+             });
+  albumsList.push({
+               artistName: 'Philip Wesley',
+               name: 'Dark Night of the Soul',
+               releaseDate: '2008, September 12',
+               genres: [ 'piano' ]
+             });
+
 
 db.Album.remove({}, function(err, albums){
 

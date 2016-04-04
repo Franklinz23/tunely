@@ -45,8 +45,10 @@
               <div class="panel panel-default">
                 <div class="panel-body">
 
-
+            <div id="albums">
                 <!-- begin album internal row -->
+                <script id="album-template" type="text/x-handlebars-template">
+
                   <div class='row'>
                     <div class="col-md-3 col-xs-12 thumbnail album-art">
                       <img src="images/800x800.png" alt="album image">
@@ -56,22 +58,26 @@
                       <ul class="list-group">
                         <li class="list-group-item">
                           <h4 class='inline-header'>Album Name:</h4>
-                          <span class='album-name'>Ladyhawke</span>
+                          <span class='album-name'>{{album.name}}</span>
                         </li>
 
                         <li class="list-group-item">
                           <h4 class='inline-header'>Artist Name:</h4>
-                          <span class='artist-name'>Ladyhawke</span>
+                          <span class='artist-name'>{{album.artistName}}</span>
                         </li>
 
                         <li class="list-group-item">
                           <h4 class='inline-header'>Released date:</h4>
-                          <span class='album-releaseDate'>2008, November 18</span>
+                          <span class='album-releaseDate'>{{album.releaseDate}}</span>
                         </li>
                       </ul>
                     </div>
 
                   </div>
+
+
+                </script>
+              </div>
                   <!-- end of album internal row -->
 
                   <div class='panel-footer'>

@@ -2,6 +2,7 @@
 
 //require express in our app
 var express = require('express');
+    db = require('./models');
 // generate a new express app and call it 'app'
 var app = express();
 
@@ -33,6 +34,19 @@ app.get('/', function homepage (req, res) {
  */
 
 app.get('/api', controllers.api.index);
+
+
+app.get('/api/albums', function(req, res) {
+
+ db.Album.find(
+   function(err, albums){
+     if (err) {
+       return console.log("index error: " + err );
+     }
+     res.json(albums);
+   });
+
+});
 
 /**********
  * SERVER *

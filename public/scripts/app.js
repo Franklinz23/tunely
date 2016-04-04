@@ -4,34 +4,11 @@
  * into functions and objects as needed.
  *
  */
-
+var albumList;
+var template;
 
 /* hard-coded data! */
-var sampleAlbums = [];
-sampleAlbums.push({
-             artistName: 'Ladyhawke',
-             name: 'Ladyhawke',
-             releaseDate: '2008, November 18',
-             genres: [ 'new wave', 'indie rock', 'synth pop' ]
-           });
-sampleAlbums.push({
-             artistName: 'The Knife',
-             name: 'Silent Shout',
-             releaseDate: '2006, February 17',
-             genres: [ 'synth pop', 'electronica', 'experimental' ]
-           });
-sampleAlbums.push({
-             artistName: 'Juno Reactor',
-             name: 'Shango',
-             releaseDate: '2000, October 9',
-             genres: [ 'electronic', 'goa trance', 'tribal house' ]
-           });
-sampleAlbums.push({
-             artistName: 'Philip Wesley',
-             name: 'Dark Night of the Soul',
-             releaseDate: '2008, September 12',
-             genres: [ 'piano' ]
-           });
+
 /* end of hard-coded data */
 
 
@@ -39,14 +16,39 @@ sampleAlbums.push({
 
 $(document).ready(function() {
   console.log('app.js loaded!');
+
+$albumList = $('#albums');
+
+var source = $('#album-template').html();
+    template = Handlebars.compile(source);
+
+
+
+  });
+
+$.ajax({
+  method: 'GET',
+  url: '/api/albums',
+  success: onSuccess,
+  error: onError
 });
 
-
-
-
-
 // this function takes a single album and renders it to the page
-function renderAlbum(album) {
+function renderAlbums(album) {
   console.log('rendering album:', album);
 
+  var albumHTML = template({ album: album  });
+
+  $albumList.prepend(albumHTML);
+}
+
+function onSuccess(albums) {
+  albums.forEach( function(album) {
+  renderAlbums(album);
+});
+
+}
+
+function onError(err) {
+  console.log("error", err);
 }
