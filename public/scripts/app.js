@@ -7,12 +7,6 @@
 var albumList;
 var template;
 
-/* hard-coded data! */
-
-/* end of hard-coded data */
-
-
-
 
 $(document).ready(function() {
   console.log('app.js loaded!');
@@ -24,7 +18,6 @@ var source = $('#album-template').html();
 
 
 
-  });
 
 $.ajax({
   method: 'GET',
@@ -32,6 +25,26 @@ $.ajax({
   success: onSuccess,
   error: onError
 });
+
+$('#album-form').on('submit', function(e) {
+  e.preventDefault();
+  $.ajax({
+    method: 'POST',
+    url: '/api/albums',
+    data: $(this).serialize(),
+    success: newAlbumSuccess,
+    error: function(err) {
+            console.log("album error: " + err);
+            }
+  });
+});
+
+});
+function newAlbumSuccess(newAlbum) {
+  console.log(newAlbum);
+  renderAlbums(newAlbum);
+
+}
 
 // this function takes a single album and renders it to the page
 function renderAlbums(album) {
