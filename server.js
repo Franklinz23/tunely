@@ -61,7 +61,15 @@ app.post('/api/albums', function(req, res){
     res.json(savedAlbum);
   });
 
+});
 
+app.post('/api/albums/:album_id/songs', function(req, res) {
+  console.log("new song", req.body);
+  var newSong = new db.Song(req.body);
+  newSong.save(function handleSavedSong(err, savedSong) {
+    res.json(savedSong);
+  });
+  
 });
 
 /**********

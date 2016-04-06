@@ -60,7 +60,7 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="releaseDate">Release Date</label>
                 <div class="col-md-4">
-                  <input id="releaseDate" name="releaseDate" type="text" placeholder="1992" class="form-control input-md" required="">
+                  <input id="releaseDate" name="releaseDate" type="text" class="form-control input-md" required="">
 
                 </div>
               </div>
@@ -69,7 +69,7 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="genres">Genres (separated by commas)</label>
                 <div class="col-md-4">
-                  <textarea class="form-control" id="genres" name="genres" required="">rock, pop</textarea>
+                  <textarea class="form-control" id="genres" name="genres" required=""></textarea>
                 </div>
               </div>
 
@@ -96,19 +96,16 @@
       <!-- albums! -->
       <div id='albums'>
 
-
-
-
+        <script id="album-template" type="text/x-handlebars-template">
           <!-- one album -->
-          <div class="row album">
+          <div class="row album" data-album-id={{album._id}}>
 
             <div class="col-md-10 col-md-offset-1">
               <div class="panel panel-default">
                 <div class="panel-body">
 
-            <div id="albums">
+
                 <!-- begin album internal row -->
-                <script id="album-template" type="text/x-handlebars-template">
 
                   <div class='row'>
                     <div class="col-md-3 col-xs-12 thumbnail album-art">
@@ -131,17 +128,24 @@
                           <h4 class='inline-header'>Released date:</h4>
                           <span class='album-releaseDate'>{{album.releaseDate}}</span>
                         </li>
+                        <li class="list-group-item">
+                          <h4 class="inline-header">Songs:</h4>
+                        </br>
+                          {{#each album.songs}}
+                          <span id="songs">({{trackNumber}}) {{name}}</span>
+                        </br>
+                          {{/each}}
+                        </li>
                       </ul>
                     </div>
 
                   </div>
 
 
-                </script>
-              </div>
                   <!-- end of album internal row -->
 
                   <div class='panel-footer'>
+                    <button class='btn btn-primary add-song'>Add Song</button>
                   </div>
 
                 </div>
@@ -149,6 +153,7 @@
             </div>
           </div>
           <!-- end one album -->
+        </script>
 
 
 
